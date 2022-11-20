@@ -11,8 +11,8 @@ public class Tabuleiro {
 
 	public Tabuleiro(Integer linhas, Integer colunas) {
 		if (linhas < 1 || colunas < 1) {
-			throw new TabuleiroExcepition("Erro na criação do tabuleiro: "
-					+ "É necessário que exista ao menos 1 linha e 1 coluna!");
+			throw new TabuleiroExcepition("Erro na criacao do tabuleiro: "
+					+ "Crie o tabuleiro com ao menos 1 linha e 1 coluna!");
 		}
 		this.linhas = linhas;
 		this.colunas = colunas;
@@ -28,21 +28,21 @@ public class Tabuleiro {
 
 	public Peca peca(int linha, int coluna) {
 		if(!existePosicao(linha, coluna)) {
-			throw new TabuleiroExcepition("Posição fora do tabuleiro.");
+			throw new TabuleiroExcepition("Posicao fora do tabuleiro.");
 		}
 		return pecas[linha][coluna];
 	}
 
 	public Peca peca(Posicao posicao) {
 		if(!existePosicao(posicao)) {
-			throw new TabuleiroExcepition("Posição fora do tabuleiro.");
+			throw new TabuleiroExcepition("Posicao fora do tabuleiro.");
 		}
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
 
 	public void lugarPeca(Peca peca, Posicao posicao) {
 		if (temPeca(posicao)) {
-			throw new TabuleiroExcepition("Já existe uma peça nessa posição.");
+			throw new TabuleiroExcepition("Ja existe uma peça nessa posicao.");
 		}
 		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
 		peca.posicao = posicao;
@@ -50,7 +50,7 @@ public class Tabuleiro {
 	
 	public Peca removerPeca(Posicao posicao) {
 		if(!existePosicao(posicao)) {
-			throw new TabuleiroExcepition("Posição fora do tabuleiro.");
+			throw new TabuleiroExcepition("Posicao fora do tabuleiro.");
 		}
 		if(peca(posicao) == null) {
 			return null;
@@ -73,7 +73,7 @@ public class Tabuleiro {
 
 	public boolean temPeca(Posicao posicao) {
 		if(!existePosicao(posicao)) {
-			throw new TabuleiroExcepition("Posição fora do tabuleiro.");
+			throw new TabuleiroExcepition("Posicao fora do tabuleiro.");
 		}
 		return peca(posicao) != null;
 	}

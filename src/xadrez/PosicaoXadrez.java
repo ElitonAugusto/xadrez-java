@@ -10,7 +10,7 @@ public class PosicaoXadrez {
 
 	public PosicaoXadrez(Character coluna, Integer linha) {
 		if (coluna < 'a' || coluna > 'h' || linha < 1 || linha > 8 ) {
-			throw new TabuleiroExcepition("Erro: Valores validos são de a1 até h8.");
+			throw new TabuleiroExcepition("Erro: Valores validos sao de a1 até h8.");
 		}
 		this.coluna = coluna;
 		this.linha = linha;
