@@ -1,4 +1,4 @@
-package tabuleiroXadrez;
+package tabuleiroxadrez;
 
 public class Peca {
 
@@ -15,6 +15,8 @@ public class Peca {
 	protected Tabuleiro getTabuleiro() {
 		return tabuleiro;
 	}
+	
+	
 	
 	
 	
