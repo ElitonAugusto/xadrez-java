@@ -1,6 +1,5 @@
 package application;
 
-import tabuleiroxadrez.Peca;
 import xadrez.PecaXadrez;
 
 public class UI {
