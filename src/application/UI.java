@@ -43,7 +43,7 @@ public class UI {
 			int linha = Integer.parseInt(s.substring(1));
 			return new PosicaoXadrez(coluna, linha);
 		} catch (RuntimeException e) {
-			throw new InputMismatchException("Erro: Valores validos sao de a1 até h8.");
+			throw new InputMismatchException("Erro: Valores validos sao de a1 ate h8.");
 		}
 	}
 
