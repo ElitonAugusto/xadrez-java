@@ -58,6 +58,9 @@ public class UI {
 		System.out.println();
 		System.out.println("Turno: " + partidaDeXadrez.getTurno());
 		System.out.println("Esperando o jogador: " + partidaDeXadrez.getJogadorAtual());
+		if(partidaDeXadrez.getCheque()) {
+			System.out.println("CHEQUE!");
+		}
 	}
 
 	public static void printTabuleiro(PecaXadrez[][] pecas) {
