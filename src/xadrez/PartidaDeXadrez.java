@@ -15,8 +15,8 @@ public class PartidaDeXadrez {
 	private Integer turno;
 	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
-	private boolean cheque;
-	private boolean chequeMate;
+	private boolean xeque;
+	private boolean xequeMate;
 	
 	private List<Peca> pecasNoTabuleiro = new ArrayList<>();
 	private List<Peca> pecasCapturadas = new ArrayList<>();
@@ -36,12 +36,12 @@ public class PartidaDeXadrez {
 		return jogadorAtual;
 	}
 	
-	public boolean getCheque() {
-		return cheque;
+	public boolean getXeque() {
+		return xeque;
 	}
 	
-	public boolean getChequeMate() {
-		return chequeMate;
+	public boolean getXequeMate() {
+		return xequeMate;
 	}
 	
 
@@ -68,15 +68,15 @@ public class PartidaDeXadrez {
 		validarPosicaoDestino(origem, destino);
 		Peca pecaCapturada = fazMover(origem, destino);
 		
-		if(testeCheque(jogadorAtual)) {
+		if(testeXeque(jogadorAtual)) {
 			desfazerMovimento(origem, destino, pecaCapturada);
-			throw new XadrezExcepition("Voce nao pode se colocar em cheque.");
+			throw new XadrezExcepition("Voce nao pode se colocar em xeque.");
 		}
 		
-		cheque = (testeCheque(oponente(jogadorAtual))) ? true : false;
+		xeque = (testeXeque(oponente(jogadorAtual))) ? true : false;
 		
-		if(testeChequeMate(oponente(jogadorAtual))) {
-			chequeMate = true;
+		if(testeXequeMate(oponente(jogadorAtual))) {
+			xequeMate = true;
 		}
 		else {
 			proximoTurno();
@@ -85,7 +85,8 @@ public class PartidaDeXadrez {
 	}
 	
 	private Peca fazMover (Posicao origem, Posicao destino) {
-		Peca p = tabuleiro.removerPeca(origem);
+		PecaXadrez p = (PecaXadrez)tabuleiro.removerPeca(origem);
+		p.aumentaContMovimento();
 		Peca pecaCapturada = tabuleiro.removerPeca(destino);
 		tabuleiro.lugarPeca(p, destino);
 		
@@ -97,7 +98,8 @@ public class PartidaDeXadrez {
 	}
 	
 	private void desfazerMovimento(Posicao origem, Posicao destino, Peca pecaCapturada ) {
-		Peca p = tabuleiro.removerPeca(destino);
+		PecaXadrez p = (PecaXadrez)tabuleiro.removerPeca(destino);
+		p.diminuirContMovimento();
 		tabuleiro.lugarPeca(p, origem);
 		
 		if(pecaCapturada != null) {
@@ -146,7 +148,7 @@ public class PartidaDeXadrez {
 		throw new IllegalStateException("Nao existe o rei " + cor + " no tabuleiro. (verificar o cod do sistema)");
 	}
 	
-	private boolean testeCheque(Cor cor) {
+	private boolean testeXeque(Cor cor) {
 		Posicao posicaoRei = rei(cor).getPosicaoXadrez().paraPosicao();
 		List<Peca> pecasOponentes = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez)x).getCor() == oponente(cor)).collect(Collectors.toList());
 		for (Peca p : pecasOponentes) {
@@ -158,8 +160,8 @@ public class PartidaDeXadrez {
 		return false;
 	}
 	
-	private boolean testeChequeMate(Cor cor) {
-		if(!testeCheque(cor)) {
+	private boolean testeXequeMate(Cor cor) {
+		if(!testeXeque(cor)) {
 			return false;
 		}
 		List<Peca> list = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez)x).getCor() == cor).collect(Collectors.toList());
@@ -171,9 +173,9 @@ public class PartidaDeXadrez {
 						Posicao origem = ((PecaXadrez)p).getPosicaoXadrez().paraPosicao();
 					    Posicao destino = new Posicao(i, j);
 					    Peca pecaCapturada = fazMover(origem, destino);
-					    boolean testeCheque = testeCheque(cor);
+					    boolean testexeque = testeXeque(cor);
 					    desfazerMovimento(origem, destino, pecaCapturada);
-					    if(!testeCheque) {
+					    if(!testexeque) {
 					    	return false;
 					    }
 					}
