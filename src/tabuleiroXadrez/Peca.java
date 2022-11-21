@@ -10,6 +10,7 @@ public abstract class Peca {
 
 	public Peca(Tabuleiro tabuleiro) {
 		this.tabuleiro = tabuleiro;
+		posicao = null;
 	}
 
 	protected Tabuleiro getTabuleiro() {

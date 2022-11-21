@@ -2,14 +2,14 @@ package tabuleiroxadrez;
 
 public class Tabuleiro {
 
-	private Integer linhas;
-	private Integer colunas;
+	private int linhas;
+	private int colunas;
 	private Peca[][] pecas;
 
 	public Tabuleiro() {
 	}
 
-	public Tabuleiro(Integer linhas, Integer colunas) {
+	public Tabuleiro(int linhas, int colunas) {
 		if (linhas < 1 || colunas < 1) {
 			throw new TabuleiroExcepition("Erro na criacao do tabuleiro: "
 					+ "Crie o tabuleiro com ao menos 1 linha e 1 coluna!");
@@ -19,10 +19,10 @@ public class Tabuleiro {
 		pecas = new Peca[linhas][colunas];
 	}
 
-	public Integer getLinhas() {
+	public int getLinhas() {
 		return linhas;
 	}
-	public Integer getColunas() {
+	public int getColunas() {
 		return colunas;
 	}	
 
@@ -55,12 +55,12 @@ public class Tabuleiro {
 		if(peca(posicao) == null) {
 			return null;
 		}
-		else {
+		
 			Peca aux = peca(posicao);
 			aux.posicao = null;
 			pecas[posicao.getLinha()][posicao.getColuna()] = null;
 			return aux;
-		}
+		
 	}
 
 	public boolean existePosicao(int linha, int coluna) {
