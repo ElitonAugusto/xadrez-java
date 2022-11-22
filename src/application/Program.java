@@ -5,6 +5,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
 import xadrez.PartidaDeXadrez;
 import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
@@ -38,6 +40,12 @@ public class Program {
 		     	
 		     	if(pecaCapturada != null) {
 		     		capturado.add(pecaCapturada);
+		     	}
+		     	
+		     	if(partida.getPromocao() != null) {
+		     		System.out.print("Digite a peça da promocao (A/B/C/T): ");
+		     		String tipo = sc.nextLine();
+		     		partida.substituirPecaPromovida(tipo);
 		     	}
 			}
 			catch(XadrezExcepition e) {
